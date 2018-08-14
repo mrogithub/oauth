@@ -13,10 +13,16 @@ router.get('/logout', (req,res) =>{
     res.send('lggong out');
 });
 
-
+// auth with google
 router.get('/google',
-    passport.authenticate('google')
+    passport.authenticate('google', {
+        scope: ['profile']
+    })
 );
 
+// callback router for google to redirect to
+router.get('/google/redirect', (req,res) => {
+    res.send('You reached the callback URI');
+})
 
 module.exports = router;
